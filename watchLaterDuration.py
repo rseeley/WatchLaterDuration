@@ -16,7 +16,7 @@ def getLogin():
         file.write("PASSWORD = '" + password + "'\n")
 
 
-def userExistingLogin():
+def useExistingLogin():
     use_existing_login = input(
         "Do you want to use the login credentials for " +
         constants.EMAIL + "? (y/n) ")
@@ -29,7 +29,7 @@ def userExistingLogin():
 
 try:
     import constants
-    userExistingLogin()
+    useExistingLogin()
 except ImportError:
     print("Login file not detected. Please enter your information below.")
     getLogin()
