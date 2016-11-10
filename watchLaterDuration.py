@@ -95,7 +95,7 @@ def getWatchLaterTime():
 
         closeProgram = input('Do you test again? (y/n) ')
         if closeProgram.lower() == 'y' or closeProgram.lower() == 'yes':
-            userExistingLogin()
+            useExistingLogin()
             browser.quit()
             active = True
         else:
