@@ -9,14 +9,25 @@ from time import sleep
 
 
 def getLogin():
+    """
+    Gets user's YouTube login, allowing user to test different accounts without
+    manually updating the constants.py file.
+    """
     email = input('Email: ')
     password = input('Password: ')
+
+    # Overwrite constants.py file with YouTube credentials provided by user,
+    # or creates the file if not already available.
     with open('constants.py', 'w') as file:
         file.write("EMAIL = '" + email + "'\n")
         file.write("PASSWORD = '" + password + "'\n")
 
 
 def useExistingLogin():
+    """
+    Asks user whether they want to use the current credentials or input a new
+    login. If 'yes', the program runs; if 'no', getLogin() is called.
+    """
     use_existing_login = input(
         "Do you want to use the login credentials for " +
         constants.EMAIL + "? (y/n) ")
@@ -27,6 +38,8 @@ def useExistingLogin():
         getLogin()
 
 
+# Import constants file, if available
+# If file isn't found (ImportError), call getLogin() to get user credentials
 try:
     import constants
     useExistingLogin()
@@ -37,6 +50,10 @@ except ImportError:
 
 
 def getWatchLaterTime():
+    """
+    Main function for calculating the Watch Later Duration. Uses Selenium to
+    automate the task.
+    """
     active = True
     while active:
         print('Testing...')
@@ -89,10 +106,12 @@ def getWatchLaterTime():
         # Convert and display total time
         m, s = divmod(totalSeconds, 60)
         h, m = divmod(m, 60)
-
         print('Total videos: %s' % (len(splitTimes)))
         print('Total Watch Later time: %d:%02d:%02d' % (h, m, s))
 
+        # Asks user whether they want to continue testing. If 'yes',
+        # useExistingLogin() is called to see if a different account should be
+        # tested. If 'no', program quits.
         closeProgram = input('Do you test again? (y/n) ')
         if closeProgram.lower() == 'y' or closeProgram.lower() == 'yes':
             useExistingLogin()
