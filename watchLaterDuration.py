@@ -13,6 +13,7 @@ def getLogin():
     Gets user's YouTube login, allowing user to test different accounts without
     manually updating the constants.py file.
     """
+
     email = input('Email: ')
     password = input('Password: ')
 
@@ -28,6 +29,7 @@ def useExistingLogin():
     Asks user whether they want to use the current credentials or input a new
     login. If 'yes', the program runs; if 'no', getLogin() is called.
     """
+
     use_existing_login = input(
         "Do you want to use the login credentials for " +
         constants.EMAIL + "? (y/n) ")
@@ -54,9 +56,11 @@ def getWatchLaterTime():
     Main function for calculating the Watch Later Duration. Uses Selenium to
     automate the task.
     """
+
     active = True
     while active:
         print('Testing...')
+
         # Establish Selenium connection
         binary = FirefoxBinary(
             r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
